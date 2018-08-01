@@ -1,0 +1,55 @@
+#ImgSample{
+	 animation: fadein 500ms;
+	 transition: 200ms;
+	 margin: 5px;
+}
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+button {
+	margin:10px;
+}
+
+video{
+	display: block;
+}
+
+.split {
+  height: 100%;
+
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  width: 40%;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: #224;
+  width: 60%;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+	display: block;
+  text-align: center;
+  width: 100%
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}

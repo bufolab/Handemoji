@@ -1,0 +1,46 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script type="text/javascript" src="imagesample.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+  <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"> </script>
+
+  <script src="machine.js"></script>
+  <script src="sketch.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./skeleton_mini.css">
+  <link rel="stylesheet" href="./handemoji.css">
+  <title>Handemoji ✋</title>
+</head>
+
+
+<body>
+
+  <div  class="split left">
+
+    <div class="centered" id ="left-container">
+
+    </div>
+
+    <div class="centered" id ="controllers">
+       <label>Epoche</label>
+       <input type="text" name="epoche" value="20">
+       <label>Learning rate</label>
+       <input type="text" name="learning-rate" value="0.0001">
+   </div>
+
+ </div>
+
+ <div id ="right-container" class="split right">
+
+    <div id ="target-container">
+    </div>
+
+  </div>
+
+</body>
+
+
+</html>
