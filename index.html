@@ -1,6 +1,9 @@
 <html>
 
 <head>
+  <title>Handemoji ✋</title>
+  <meta name="description"  content="Experiment with Tensorflow to recognize a hand emoji you have trained ">
+  <meta name="author" content="BufoLab">
   <meta charset="UTF-8">
   <script type="text/javascript" src="imagesample.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
@@ -12,7 +15,6 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="./skeleton_mini.css">
   <link rel="stylesheet" href="./handemoji.css">
-  <title>Handemoji ✋</title>
 </head>
 
 
@@ -26,9 +28,9 @@
 
     <div class="centered" id ="controllers">
        <label>Epoche</label>
-       <input type="text" name="epoche" value="20">
+       <input type="text" name="epoche" value="20" id="epoche">
        <label>Learning rate</label>
-       <input type="text" name="learning-rate" value="0.0001">
+       <input type="text" name="learning-rate" value="0.0001" id="learning-rate">
    </div>
 
  </div>
