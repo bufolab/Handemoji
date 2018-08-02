@@ -182,7 +182,7 @@ var getCapture = function(label){
 	let data = removeAlphaNormalize(imagedata.data);
 
 	//assign the label
-	data.label = label;
+	data.label = hands.indexOf(label);
 
 	return data;
 }
