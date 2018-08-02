@@ -1,37 +1,14 @@
-## Welcome to GitHub Pages
+Handemoji is website to experiment and learn Tensorflow js.
+-----------------------------------------------------------
 
-You can use the [editor on GitHub](https://github.com/bufolab/Handemoji/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+The goal is to train the machine to train and predict which type of emoji hand you are showing to the camera.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+Instructions
+------------
+* Select an emoji from top buttons
+* Place your hand in front of the camera and press ***Capture***
+* Select another emoji and repeat the process
+* Once you have taken snapshots for every emoji. Press ***Start Learning***
+* Press ***Predict*** to start 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/bufolab/Handemoji/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
