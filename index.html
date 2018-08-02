@@ -5,13 +5,12 @@
   <meta name="description"  content="Experiment with Tensorflow to recognize a hand emoji you have trained ">
   <meta name="author" content="BufoLab">
   <meta charset="UTF-8">
-  <script type="text/javascript" src="imagesample.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
   <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"> </script>
-
   <script src="machine.js"></script>
   <script src="sketch.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="./skeleton_mini.css">
   <link rel="stylesheet" href="./handemoji.css">
@@ -20,28 +19,50 @@
 
 <body>
 
-  <div  class="split left">
+<div class="container">
 
-    <div class="centered" id ="left-container">
+  <div class="row">
+     <div  class="six columns">
+
+      <div class="centered" id ="left-container">
+
+      </div>
+
+      <div class="centered" id ="controllers">
+         <label>Epoche</label>
+         <input type="text" name="epoche" value="20" id="epoche">
+         <label>Learning rate</label>
+         <input type="text" name="learning-rate" value="0.0001" id="learning-rate">
+      </div>
 
     </div>
 
-    <div class="centered" id ="controllers">
-       <label>Epoche</label>
-       <input type="text" name="epoche" value="20" id="epoche">
-       <label>Learning rate</label>
-       <input type="text" name="learning-rate" value="0.0001" id="learning-rate">
-   </div>
+    <div id ="right-container" class="six columns">
 
- </div>
+      <div id ="target-container">
+      </div>
 
- <div id ="right-container" class="split right">
-
-    <div id ="target-container">
     </div>
-
   </div>
 
+  <div class="row">
+    <div class="twelve columns" id="chart-contaiener">  
+
+      <div id="instructions">
+        <h2>Instructions</h2>
+        <ul>
+          <li>Select an emoji from top buttons</li>
+          <li>Place your hand in fron of the camera and press <b>Capture</b></li>
+          <li>Select another emoji and repeat the process</li>
+          <li>Once you have taken snapshots for every emoji. Press <b>Start Learning</b> </li>
+          <li>Press <b>Predict<b> to start </li>
+        </ul>
+
+      </div>
+  </div>
+
+
+</div>
 </body>
 
 

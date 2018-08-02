@@ -1,6 +1,6 @@
 'use strict'
 
-const EPOCHE = 60;
+const EPOCHE = 20;
 //const LEARNING_RATE = 0.0001;
 
 const LEARNING_RATE = 0.0001;
@@ -11,18 +11,28 @@ class Machine{
 	constructor(){
 		this.epoche = EPOCHE;
 		this.learningRate = LEARNING_RATE;
-		this.optimizer = tf.train.adam(this.learningRate)
 		this.isTraining = false;
+		this.setOptimizer(OPTIMIZER);
 	}
 
-	setEpoche(epoche){this.epoche = epoche}
+	setEpoche(epoche){
+		let e = parseInt(epoche);
+		if(e === NaN) throw new Error("Epoche must be a number");
+		this.epoche = e;
+	}
 
-	setLearningRate(learningRate){this.learningRate = learningRate}
+	setLearningRate(learningRate){
+		let e = parseFloat(learningRate);
+		if(e === NaN) throw new Error("Learning rate must be a number");
+		this.learningRate = e;
+	}
 
 	setOptimizer(optimizer){
 
 		if(optimizer === "ADAM"){
-			this.optimizer = tf.train.adam(LEARNING_RATE)
+			this.optimizer = tf.train.adam(LEARNING_RATE);
+		}else if(otimizer == "SGD"){
+			this.optimizer = tf.train.sgd(LEARNING_RATE);
 		}
 	}
 
