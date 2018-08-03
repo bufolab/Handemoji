@@ -56,10 +56,7 @@ var predictButton;
 
 function setup() {
 
-	let canvas = createCanvas(400,400);
-	canvas.id("myChart");
-	canvas.width = "200"
-	canvas.height = "200"
+
 
 	var constraints = {
 		audio: false,
@@ -144,12 +141,15 @@ function setup() {
 
 	let d = document.getElementById("instructions");
 	divImageContainer = createDiv();
-		divImageContainer.child(d);
-		divImageContainer.parent("right-container");
+	divImageContainer.child(d);
+	divImageContainer.parent("right-container");
 	divArray["instructions"] = divImageContainer;
 	//selector.position(Object.values(divArray)[0].position().x,Object.values(divArray)[0].position().y);
 	//presetup the model
 	buildModel();
+
+	let lossCanvas = document.getElementById("myChartLoss");
+	let accCanvas = document.getElementById("myChartAcc");
 }
 
 var m; //my machine
@@ -261,8 +261,8 @@ function removeAlphaNormalize(imagedata){
 var isTraining = false;
 var startTrain = async function() {
 
-	let e = ui.getEpoche();
-	m.setEpoche(e);
+	let e = ui.getEpochs();
+	m.setEpochs(e);
 
 	let l = ui.getLearningRate();
 	m.setLearningRate(l);
@@ -270,7 +270,8 @@ var startTrain = async function() {
 	if(isTraining) return;
 	isTraining = true;
 
-	var dataChart = [];
+	let dataChartLoss = [];
+	let dataChartAcc = [];
 	try{
 
 		//let trainIndices = tf.util.createShuffledIndices(samples.length);
@@ -307,13 +308,16 @@ var startTrain = async function() {
 	   m.train(xs, ys, {
 			      onEpochEnd: async (batch, logs) => {
 			        console.log('Loss: ' + logs.loss.toFixed(5) +" batch " +batch);
-			      	dataChart.push({x:batch,y:logs.loss.toFixed(5)})
+			      	dataChartLoss.push({x:batch,y:logs.loss.toFixed(5)})
+			      	dataChartAcc.push({x:batch,y:logs.acc.toFixed(5)})
+			      	console.log(logs);
 			        await tf.nextFrame();
 			      },
 			      onTrainEnd: () => { xs.dispose();
 			  						ys.dispose();
 									this.isTraining = false;
-									ui.showChartLoss(dataChart);
+									ui.showChart(dataChartLoss,document.getElementById("myChartLoss"), "Loss per Epoch");
+									ui.showChart(dataChartAcc,document.getElementById("myChartAcc"), "Accuracy per Epoch");
 			  					}
 			    });
 
@@ -369,7 +373,7 @@ var test = function(){
 //Ui temporary object
 var ui = {};
 
-ui.getEpoche = function(){
+ui.getEpochs = function(){
 	return document.getElementById("epoche").value;
 }
 
@@ -381,13 +385,12 @@ ui.setDetectedEmoji = function(emoji){
 	emojiPredictedDiv.elt.innerHTML = emoji;
 }
 
-ui.showChartLoss = function(data){
-	var ctx = document.getElementById("myChart");
+ui.showChart = function(data,ctx, label){
 	var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         datasets: [{
-            label: 'Loss per Epoche',
+            label: label,
             data: data,
             borderWidth: 1
         }]

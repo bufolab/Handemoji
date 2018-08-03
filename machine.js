@@ -1,6 +1,6 @@
 'use strict'
 
-const EPOCHE = 20;
+const EPOCHS = 20;
 //const LEARNING_RATE = 0.0001;
 
 const LEARNING_RATE = 0.0001;
@@ -9,16 +9,16 @@ const OPTIMIZER = "ADAM";
 class Machine{
 	
 	constructor(){
-		this.epoche = EPOCHE;
+		this.epochs = EPOCHS;
 		this.learningRate = LEARNING_RATE;
 		this.isTraining = false;
 		this.setOptimizer(OPTIMIZER);
 	}
 
-	setEpoche(epoche){
-		let e = parseInt(epoche);
-		if(e === NaN) throw new Error("Epoche must be a number");
-		this.epoche = e;
+	setEpochs(epochs){
+		let e = parseInt(epochs);
+		if(e === NaN) throw new Error("Epochs must be a number");
+		this.epochs = e;
 	}
 
 	setLearningRate(learningRate){
@@ -101,8 +101,8 @@ class Machine{
 			  // Train the model! Model.fit() will shuffle xs & ys so we don't have to.
 			  this.model.fit(xs, ys, {
 			    batchSize: xs.shape[0], //TODO make it parameter
-			    epochs: this.epoche,
-			    validationSlplit:0.2,
+			    epochs: this.epochs,
+			    validationSplit:0.2,
 			    shuffle: true,
 			    callbacks: callbacks
 			  });
