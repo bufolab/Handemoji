@@ -58,8 +58,8 @@ function setup() {
 
 	let canvas = createCanvas(400,400);
 	canvas.id("myChart");
-	canvas.width = "500px"
-	canvas.height = "500px"
+	canvas.width = "200"
+	canvas.height = "200"
 
 	var constraints = {
 		audio: false,
@@ -79,7 +79,7 @@ function setup() {
                                undefined;
 
 
-                             
+
 	video = createCapture(constraints);
 	video.elt.width = CAP_SIZE.w;
 	video.elt.height = CAP_SIZE.h;

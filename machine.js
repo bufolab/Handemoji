@@ -87,7 +87,7 @@ class Machine{
 	 return tf.tensor4d(data, [1,CAP_SIZE.w,CAP_SIZE.h,3],'float32');
 	}
 
-	async train(xs,ys){
+	async train(xs,ys,callbacks){
 
 		if (xs == null) {
 			    throw new Error('Please follow the instructions!');
@@ -104,17 +104,7 @@ class Machine{
 			    epochs: this.epoche,
 			    validationSlplit:0.2,
 			    shuffle: true,
-			    callbacks: {
-			      onBatchEnd: async (batch, logs) => {
-			        console.log('Loss: ' + logs.loss.toFixed(5));
-			      //  console.log(tf.memory().numBytes);
-			        await tf.nextFrame();
-			      },
-			      onTrainEnd: () => { xs.dispose();
-			  						ys.dispose();
-									this.isTraining = false;
-			  					}
-			    }
+			    callbacks: callbacks
 			  });
 		}catch(e){
 			console.error(e);
