@@ -56,6 +56,11 @@ var predictButton;
 
 function setup() {
 
+	let canvas = createCanvas(400,400);
+	canvas.id("myChart");
+	canvas.width = "500px"
+	canvas.height = "500px"
+
 	var constraints = {
 		audio: false,
 		video: {
@@ -66,6 +71,15 @@ function setup() {
 			optional: [{ maxFrameRate: 10 }]
 		}
 	};
+
+	//workaround to make p5js createCapture work on firefox.
+	navigator.getUserMedia = navigator.getUserMedia       ||
+                               navigator.webkitGetUserMedia ||
+                               navigator.mozGetUserMedia    ||
+                               undefined;
+
+
+                             
 	video = createCapture(constraints);
 	video.elt.width = CAP_SIZE.w;
 	video.elt.height = CAP_SIZE.h;
@@ -172,7 +186,7 @@ var prepareTrain = async function(){
 
 }
 
-var mtlabel ;
+
 var getCapture = function(label){
 	let snapshotcanvas = video.get().canvas;
 	let imagedata = snapshotcanvas.getContext('2d').getImageData(0,0,CAP_SIZE.w,CAP_SIZE.h);
@@ -256,6 +270,7 @@ var startTrain = async function() {
 	if(isTraining) return;
 	isTraining = true;
 
+	var dataChart = [];
 	try{
 
 		//let trainIndices = tf.util.createShuffledIndices(samples.length);
@@ -289,7 +304,18 @@ var startTrain = async function() {
 	   // }
 
 	   // Train the model! Model.fit() will shuffle xs & ys so we don't have to.
-	   m.train(xs, ys);
+	   m.train(xs, ys, {
+			      onEpochEnd: async (batch, logs) => {
+			        console.log('Loss: ' + logs.loss.toFixed(5) +" batch " +batch);
+			      	dataChart.push({x:batch,y:logs.loss.toFixed(5)})
+			        await tf.nextFrame();
+			      },
+			      onTrainEnd: () => { xs.dispose();
+			  						ys.dispose();
+									this.isTraining = false;
+									ui.showChartLoss(dataChart);
+			  					}
+			    });
 
 	}catch(e){
 		console.error(e);
@@ -355,4 +381,26 @@ ui.setDetectedEmoji = function(emoji){
 	emojiPredictedDiv.elt.innerHTML = emoji;
 }
 
+ui.showChartLoss = function(data){
+	var ctx = document.getElementById("myChart");
+	var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        datasets: [{
+            label: 'Loss per Epoche',
+            data: data,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+}
 
