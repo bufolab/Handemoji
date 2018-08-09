@@ -2,6 +2,7 @@ Handemoji is website to experiment and learn Tensorflow js.
 -----------------------------------------------------------
 
 The goal is to train the machine to train and predict which type of emoji hand you are showing to the camera.
+You can try it here https://bufolab.github.io/Handemoji/
 
 
 Instructions
